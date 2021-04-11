@@ -4,8 +4,6 @@ import os
 import sys
 
 
-# def eprint(*args, **kwargs):
-#     print(*args, file=sys.stderr, **kwargs)
 
 
 if __name__ == "__main__":
