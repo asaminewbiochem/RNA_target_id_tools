@@ -2,7 +2,7 @@
 import argparse
 import os
 import sys
-from math import sqrt
+from math import sqrt, fsum
 
 
 if __name__ == "__main__":
@@ -23,29 +23,33 @@ if __name__ == "__main__":
         line = line.split()
         pdbid = line[0]
         ring = line[1]
-        vs = []
+        cnt = 0
+
+        for l in open(pdbid+'.pdb', 'r'):
+            if l.split()[0] == "ATOM":
+                cnt += 1
+        natom = int(cnt/10)
+
         vt = []
+        vs = []
         if ring != "T":
-            for index in range(1, 10, 1):
+            for index in range(1, 10*(natom+3), natom+3):
                 s = 0
-                pdb = open(pdbid+'.'+str(index)+'.pdb', 'r')
-                for p in pdb.readlines():
-                    if p.startswith('ATOM'):
-                        for i in range(2, len(line), 1):
-                            if p.split()[1] == line[i]:
+                c = 0
+                pdb = open("/Users/ahaile/"+pdbid+'.pdb', 'r')
+                for p in pdb:
+                    if (index < c) and (c <= index+natom):
+                        for d in range(2, len(line), 1):
+                            if p.split()[1] == line[d]:
                                 s += float(p.split()[9])
+                    c += 1
                 vs.append(s)
-            sd = 0.0
-            avg = 0.0
+            std = 0.0
+            avgs = sum(vs)/len(vs)
             for value in vs:
-                avg += value
-            avgs = avg/len(vs)
+                std += (value-avgs)**2
+            stds = sqrt(std/len(vs))
 
-            for value in vs:
-                sd += (value-avgs)**2
-            sds = sqrt(sd/len(vs))
-
-            # pymol = ("com " + pdbid+'.'+str(index) + " and (")
             pymol = ("com " + pdbid+'.'+str(1) + " and (")
             for k in range(3, len(line), 1):
 
@@ -56,33 +60,29 @@ if __name__ == "__main__":
 
             f.write(pymol+" , object="+pdbid+"."+ring+"\n")
             f.write("%s %1s %s %1s %1s%5.1f %4s %5.1f %1s \n" %
-                    ("label", " ", pdbid+"."+ring, ",", '"', avgs, "±", sds, '"'))
+                    ("label", " ", pdbid+"."+ring, ",", '"', avgs, "±", stds, '"'))
             f.write("hide everything, " + pdbid+"."+ring+"\n")
             f.write("show label , " + pdbid+"."+ring+"\n")
 
         elif ring == "T":
-            for index in range(1, 10, 1):
+            for index in range(1, 10*(natom+3), natom+3):
                 t = 0
-                pdb = open(pdbid+'.'+str(index)+'.pdb', 'r')
-                for p in pdb.readlines():
-                    if p.startswith('ATOM'):
+                c = 0
+                pdb = open("/Users/ahaile/"+pdbid+'.pdb', 'r')
+                for p in pdb:
+                    if (index < c) and (c <= index+natom):
                         t += float(p.split()[9])
+                    c += 1
                 vt.append(t)
-
-            sd = 0.0
-            avg = 0.0
+            std = 0.0
+            avgt = sum(vt)/len(vt)
             for value in vt:
-                avg += value
-            avgt = avg/len(vt)
+                std += (value-avgt)**2
+            stdt = sqrt(std/len(vt))
 
-            for value in vt:
-                sd += (value-avgt)**2
-            sdt = sqrt(sd/len(vt))
-
-            # f.write("com  "+pdbid+"."+str(index)+",object="+pdbid+".T\n")
             f.write("com  "+pdbid+"."+str(1)+",object="+pdbid+".T\n")
             f.write("%s %1s %s %1s %1s%5.2f %4s %5.2f %1s \n" %
-                    ("label", " ", pdbid+".T", ",", '"', avgt, "±", sdt, '"'))
+                    ("label", " ", pdbid+".T", ",", '"', avgt, "±", stdt, '"'))
             f.write("hide everything , " + pdbid+".T\n")
             f.write("show label , " + pdbid+".T\n")
             f.write("set label_size,30 , " + pdbid+".T\n")
