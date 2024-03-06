@@ -1,0 +1,30 @@
+   CD31HA   CD31HB   CD31HB    OD30D     0.27  1      0.0
+   CD31HA   CD31HB   CD31HB    OD30D     1.75  2      0.0
+   CD31HA   CD31HB   CD31HB    OD30D     1.23  3      0.0
+   CD31HA   CD31HB    OD30D    PD1AN     1.75  1    180.0
+   CD31HA   CD31HB    OD30D    PD1AN     0.80  2      0.0
+   CD31HA   CD31HB    OD30D    PD1AN     1.48  3    180.0
+   CD31HB   CD31HB   CD31HB    OD30D     1.75  1      0.0
+   CD31HB   CD31HB   CD31HB    OD30D     0.32  2      0.0
+   CD31HB   CD31HB   CD31HB    OD30D     1.75  3      0.0
+   CD31HB   CD31HB    OD30D    PD1AN     0.92  1      0.0
+   CD31HB   CD31HB    OD30D    PD1AN     0.17  2      0.0
+   CD31HB   CD31HB    OD30D    PD1AN     1.12  3      0.0
+   CD31HC   CD31HB    OD30D    PD1AN     1.75  1    180.0
+   CD31HC   CD31HB    OD30D    PD1AN     0.35  2      0.0
+   CD31HC   CD31HB    OD30D    PD1AN     1.08  3    180.0
+   CD31HC   CD31HB   CD31HB    OD30D     1.75  1      0.0
+   CD31HC   CD31HB   CD31HB    OD30D     1.48  2      0.0
+   CD31HC   CD31HB   CD31HB    OD30D     0.92  3      0.0
+   OD306A   CD31HA   CD31HB    OD30D     1.75  1      0.0
+   OD306A   CD31HA   CD31HB    OD30D     1.75  2      0.0
+   OD306A   CD31HA   CD31HB    OD30D     0.58  3    180.0
+   CD31HB    OD30D    PD1AN    OD31D     1.75  1      0.0
+   CD31HB    OD30D    PD1AN    OD31D     0.90  2    180.0
+   CD31HB    OD30D    PD1AN    OD31D     0.09  3    180.0
+   CD31HB    OD30D    PD1AN   OD2C2C     1.15  1      0.0
+   CD31HB    OD30D    PD1AN   OD2C2C     1.23  2    180.0
+   CD31HB    OD30D    PD1AN   OD2C2C     0.15  3      0.0
+OD30D    CD31HB   CD31HC   OD306A      1.67  1   0.00
+OD30D    CD31HB   CD31HC   OD306A      0.78  2   0.00
+OD30D    CD31HB   CD31HC   OD306A      1.36  3   180.00

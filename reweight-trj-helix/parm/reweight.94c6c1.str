@@ -1,0 +1,50 @@
+* toppar_drude_model.str
+* reweight
+*
+
+
+read para card append
+* reweight: by ahaile 2/24/2020
+* target_function   = 1.467001 
+* probability       = 4.033628 
+* wrmsd             = 10.000000 
+* nstep             = 150 
+* Temprature        = 100.000000 
+* Best_RMSD         = 0.036167 
+*
+
+
+BONDS
+
+ANGLES 
+
+DIHEDRALS
+OD30A    CD31A    CD31C    CD2O1A      2.5606  1     0.00
+OD30A    CD31A    CD31C    CD2O1A      0.0020  2     0.00
+OD30A    CD31A    CD31C    CD2O1A      0.1905  3     0.00
+OD30A    CD31A    CD31C    CD2O1A      0.0313  6     0.00
+CD31HB   CD31HA   OD30A    CD31A       0.6376  1   180.00
+CD31HB   CD31HA   OD30A    CD31A       0.0386  2   180.00
+CD31HB   CD31HA   OD30A    CD31A       0.6838  3     0.00
+CD31HB   CD31HA   OD30A    CD31A       0.1700  6   180.00
+CD33A    CD31A    OD30A    CD31HA      0.8575  1     0.00
+CD33A    CD31A    OD30A    CD31HA      0.1964  2   180.00
+CD33A    CD31A    OD30A    CD31HA      0.2311  3   180.00
+CD33A    CD31A    OD30A    CD31HA      0.1359  6     0.00
+OD30A    CD31A    CD31C    ND2A2       0.4281  1   180.00
+OD30A    CD31A    CD31C    ND2A2       0.0506  2   180.00
+OD30A    CD31A    CD31C    ND2A2       1.0579  3     0.00
+OD30A    CD31A    CD31C    ND2A2       0.4851  6     0.00
+OD306A   CD31HA   OD30A    CD31A       0.0317  1   180.00
+OD306A   CD31HA   OD30A    CD31A       0.7020  2     0.00
+OD306A   CD31HA   OD30A    CD31A       0.2336  3     0.00
+OD306A   CD31HA   OD30A    CD31A       0.3227  6     0.00
+CD31C    CD31A    OD30A    CD31HA      0.7758  1     0.00
+CD31C    CD31A    OD30A    CD31HA      0.2904  2     0.00
+CD31C    CD31A    OD30A    CD31HA      0.2000  3     0.00
+CD31C    CD31A    OD30A    CD31HA      0.1360  6   180.00
+
+
+IMPROPERS
+
+END

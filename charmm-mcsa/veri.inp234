@@ -1,0 +1,165 @@
+* Potential energy scan
+* 
+stream /tmp/ahaile/toppar_drude_master_protein_2018d.str
+stream /tmp/ahaile/toppar_drude_carbohydrate_2018a.str
+stream /tmp/ahaile/drude.str
+stream /tmp/ahaile/@jobid/current.@q.@run.@index.@lb.str
+
+open unit 9 append form name @mme
+open unit 12 read form name /tmp/ahaile/s_@p_file.txt
+
+
+
+read sequ card
+* drude patching
+*
+1
+aglc
+generate disa first none last none setup warn drude dmass 0.4 !HYPE HORD 4 KHYP 40000 RHYP 0.2
+if @p .eq. p2 patch 2aphh  disa 1  setup warn drude dmass 0.4
+if @p .eq. p3 patch 3aphh  disa 1  setup warn drude dmass 0.4
+if @p .eq. p4 patch 4aphh  disa 1  setup warn drude dmass 0.4
+
+if @p .eq. p2n patch 2aph2  disa 1  setup warn drude dmass 0.4
+if @p .eq. p3n patch 3aph2  disa 1  setup warn drude dmass 0.4
+if @p .eq. p4n patch 4aph2  disa 1  setup warn drude dmass 0.4
+
+
+
+set cons 8
+
+if @p .eq. p2 then
+ set con1  1 C2   1 O2   1 P2 1 OP22
+ set con2  1 C1   1 C2   1 O2 1 P2
+ set con3  1 O5   1 C1   1 O1 1 HO1
+ set con4  1 C2   1 C3   1 O3 1 HO3
+ set con5  1 C3   1 C4   1 O4 1 HO4
+ set con6  1 C4   1 C5   1 C6 1 O6
+ set con7  1 C5   1 C6   1 O6 1 HO6
+ set con8  1 O2   1 P2   1 OP22 1 H22
+  endif
+ 
+
+ if @p .eq. p3 then
+ set con1  1 C3   1 O3   1 P3 1 OP32
+ set con2  1 C2   1 C3   1 O3 1 P3
+ set con3  1 O5   1 C1   1 O1 1 HO1
+ set con4  1 C1   1 C2   1 O2 1 HO2
+ set con5  1 C3   1 C4   1 O4 1 HO4
+ set con6  1 C4   1 C5   1 C6 1 O6
+ set con7  1 C5   1 C6   1 O6 1 HO6
+ set con8  1 O3   1 P3   1 OP32 1 H32
+  endif
+ 
+ if @p .eq. p4 then
+ set con1  1 C4   1 O4   1 P4 1 OP42
+ set con2  1 C5   1 C4   1 O4 1 P4
+ set con3  1 O5   1 C1   1 O1 1 HO1
+ set con4  1 C1   1 C2   1 O2 1 HO2
+ set con5  1 C2   1 C3   1 O3 1 HO3
+ set con6  1 C4   1 C5   1 C6 1 O6
+ set con7  1 C5   1 C6   1 O6 1 HO6
+ set con8  1 O4   1 P4   1 OP42 1 H42
+  endif 
+
+if @p .eq. p2n then
+ set con1  1 C2   1 O2   1 P2 1 OP22
+ set con2  1 C1   1 C2   1 O2 1 P2
+ set con3  1 O5   1 C1   1 O1 1 HO1
+ set con4  1 C2   1 C3   1 O3 1 HO3
+ set con5  1 C3   1 C4   1 O4 1 HO4
+ set con6  1 C4   1 C5   1 C6 1 O6
+ set con7  1 C5   1 C6   1 O6 1 HO6
+ set con8  1 O2   1 P2   1 OP22 1 H22
+  set con9  1 O2   1 P2   1 OP23 1 H23
+  endif
+ 
+
+ if @p .eq. p3n then
+ set con1  1 C3   1 O3   1 P3 1 OP32
+ set con2  1 C2   1 C3   1 O3 1 P3
+ set con3  1 O5   1 C1   1 O1 1 HO1
+ set con4  1 C1   1 C2   1 O2 1 HO2
+ set con5  1 C3   1 C4   1 O4 1 HO4
+ set con6  1 C4   1 C5   1 C6 1 O6
+ set con7  1 C5   1 C6   1 O6 1 HO6
+ set con8  1 O3   1 P3   1 OP32 1 H32
+  set con9  1 O3   1 P3   1 OP33 1 H33
+  endif
+ 
+ if @p .eq. p4n then
+ set con1  1 C4   1 O4   1 P4 1 OP42
+ set con2  1 C5   1 C4   1 O4 1 P4
+ set con3  1 O5   1 C1   1 O1 1 HO1
+ set con4  1 C1   1 C2   1 O2 1 HO2
+ set con5  1 C2   1 C3   1 O3 1 HO3
+ set con6  1 C4   1 C5   1 C6 1 O6
+ set con7  1 C5   1 C6   1 O6 1 HO6
+ set con8  1 O4   1 P4   1 OP42 1 H42
+ set con9  1 O4   1 P4   1 OP43 1 H43
+  endif 
+
+
+
+
+
+
+set frame 1
+label nextframe
+get crdnam unit 12
+
+
+if "@CRDNAM" eq "END-OF-FILE" goto lastframe
+if "@CRDNAM" eq "" goto lastframe
+
+
+
+
+read coor card name @crdnam
+coor sdrude ! this is apparently standard
+coor shake  ! practice to build drude particles.
+coor copy comp
+
+
+cons harm force 10000000.0 sele .not. (type D* .or. type LP* ) end
+mini SD   nstep 200       tolgrd 0.00001 nprint 200 inbfrq 1000 cutnb 999. bycu tolgrd 0.00001
+MINI ABNR nstep 250  nprint 500
+cons harm force 0.0 sele all end
+
+set cond 1
+label loop_cond1
+cons dihe @con@@cond FORCE 9999. MAIN PERIOD 0
+incr cond
+if @cond le @cons goto loop_cond1
+
+cons dihe 1 o5  1 c5  1 c4 1 c3  FORCE 9999. MAIN PERIOD 0
+cons dihe 1 c1  1 o5  1 c5 1 c4  FORCE 9999. MAIN PERIOD 0
+cons dihe 1 c2  1 c1  1 o5 1 c5  FORCE 9999. MAIN PERIOD 0
+cons dihe 1 c3  1 c2  1 c1 1 o5  FORCE 9999. MAIN PERIOD 0
+cons dihe 1 c4  1 c3  1 c2 1 c1  FORCE 9999. MAIN PERIOD 0
+
+
+
+!label abnr_loop
+MINI SD   nstep 550 nprint 155500 inbfrq 1000 cutnb 999. bycu tolgrd 0.00001
+MINI ABNR nstep 5500 nprint 550 tolgrd 0.00001 tolenr -0.0001 tolstp 0.000000 tolitr 100000
+!if ?grms gt 0.00001 goto abnr_loop
+
+
+
+cons cldh
+
+
+echu 9
+cons cldh
+energy
+echo ?ener
+
+
+
+incr frame by 1
+goto nextframe
+
+close unit 12
+
+label lastframe
