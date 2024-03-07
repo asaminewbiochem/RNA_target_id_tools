@@ -12,6 +12,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+splice_prediction
 eggs/
 .eggs/
 lib/

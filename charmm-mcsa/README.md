@@ -1,4 +1,4 @@
-```
+
 # Monte Carlo Reweight Dihedral Force Constant
 
 This Python script implements Monte Carlo reweighting of dihedral force constants, primarily for molecular dynamics simulations. The code has been updated for Python 3 compatibility and improved practices.
@@ -6,7 +6,7 @@ This Python script implements Monte Carlo reweighting of dihedral force constant
 ## Usage
 
 1. **Run the Script**: Execute the script using Python 3 with the required command-line arguments.
-
+```
 bash
 python3 monte_carlo_reweight.py <run> <thread> <jobid> <f>
 ```
