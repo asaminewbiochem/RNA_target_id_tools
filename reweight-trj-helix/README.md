@@ -1,6 +1,4 @@
-Sure, here's a simple README file based on the provided code:
 
-```
 # Monte Carlo Reweight Dihedral Force Constant
 
 This Python script performs Monte Carlo reweighting of dihedral force constants using RMSD with NMR J-coupling as a target function. It is designed to optimize parameters in molecular dynamics simulations.

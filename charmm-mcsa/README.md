@@ -1,4 +1,3 @@
-Here's a README file based on the provided code:
 ```
 # Monte Carlo Reweight Dihedral Force Constant
 
@@ -7,14 +6,14 @@ This Python script implements Monte Carlo reweighting of dihedral force constant
 ## Usage
 
 1. **Run the Script**: Execute the script using Python 3 with the required command-line arguments.
-   
-   ```bash
-   python3 monte_carlo_reweight.py <run> <thread> <jobid> <f>
-   ```
 
-   - `<run>`: Integer representing the run number.
-   - `<thread>`: Number of threads to use for parallel execution.
-   - `<jobid>`: Integer representing the job ID.
+bash
+python3 monte_carlo_reweight.py <run> <thread> <jobid> <f>
+```
+
+- `<run>`: Integer representing the run number.
+- `<thread>`: Number of threads to use for parallel execution.
+- `<jobid>`: Integer representing the job ID.
    - `<f>`: String representing the filename.
 
 2. **Input Files**: Ensure the necessary input files are available, including parameters (`parm.parm`), QM data (`<f>.qm`), and CHARMM scripts (`charmm.<jobid>.sh`).
